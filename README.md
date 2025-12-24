@@ -222,7 +222,8 @@ Region:
 ### 7.1 Install
 ```bash
 pip install -r requirements.txt
- bu şekilde tamamla bunu aşağıda var bir kısmı:7.2 Prepare required raw inputs (data_raw/)
+
+### 7.2 Prepare required raw inputs (data_raw/)
 Required files:
 GeoNames
 
@@ -233,7 +234,7 @@ Cost proxies
 labour_cost_country.csv
 cit_rate_country.csv
 rent_city.csv (optional)
-7.3 Run steps
+### 7.3 Run steps
 
 python project.py top100
 python project.py poi
@@ -248,7 +249,7 @@ Scenario analysis:
 
 
 python project.py scenarios
-8) Outputs
+## 8) Outputs
 Data preparation (data_out/)
 top100_cities.csv
 poi_scores_100.csv
@@ -268,13 +269,13 @@ professional_supply_chain_map.html
 Open the map:
 
 outputs/professional_supply_chain_map.html
-9) Interpretation Guide
+## 9) Interpretation Guide
 opened_hubs.csv / opened_dcs.csv: selected facilities
 assignments.csv: demand city → hub mapping
 dc_hub_flows.csv: upstream consolidation
 solution_summary.csv: KPIs and objective breakdown
 Insights typically come from SLA tightening, cost scaling, and regional enforcement comparisons.
-10) Limitations & Extensions
+## 10) Limitations & Extensions
 This is a strategic-level model:
 
 SLA is distance-based.
