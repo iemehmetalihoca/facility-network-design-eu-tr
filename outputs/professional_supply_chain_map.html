@@ -1,0 +1,3907 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_2314e74502ade7e57329642e5ba6bca3 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+    <script src="https://cdn.jsdelivr.net/npm/leaflet.fullscreen@3.0.0/Control.FullScreen.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.fullscreen@3.0.0/Control.FullScreen.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-minimap/3.6.1/Control.MiniMap.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet-minimap/3.6.1/Control.MiniMap.css"/>
+    <script src="https://cdn.jsdelivr.net/gh/ljagis/leaflet-measure@2.1.7/dist/leaflet-measure.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/ljagis/leaflet-measure@2.1.7/dist/leaflet-measure.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-locatecontrol/0.66.2/L.Control.Locate.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet-locatecontrol/0.66.2/L.Control.Locate.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/leaflet.markercluster.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/MarkerCluster.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/MarkerCluster.Default.css"/>
+</head>
+<body>
+    
+    
+    <div style="
+    position: fixed; bottom: 20px; left: 20px; width: 280px; z-index:9999;
+    background: white; padding: 12px; border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    font-size: 12px;">
+    <b>Legend</b><br>
+    <span style="color:#cc0000;">●</span> DC (big)<br>
+    <span style="color:#1f77ff;">●</span> Hub EU (medium, sized by utilization)<br>
+    <span style="color:#ff7a00;">●</span> Hub TR (medium, sized by utilization)<br>
+    <span style="color:#888888;">●</span> Cafe (small, clustered)<br>
+    <hr style="margin:8px 0">
+    <span style="color:#2c3e50;">━</span> Primary Supply (DC→Hub)<br>
+    <span style="color:#777777;">- -</span> Secondary Delivery (Hub→Cafe)<br>
+    </div>
+    
+    
+            <div class="folium-map" id="map_2314e74502ade7e57329642e5ba6bca3" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_2314e74502ade7e57329642e5ba6bca3 = L.map(
+                "map_2314e74502ade7e57329642e5ba6bca3",
+                {
+                    center: [47.96436, 16.17503],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 4,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_ad069e34098e89fbde84e67825de0c4d = L.tileLayer(
+                "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 20,
+  "maxNativeZoom": 20,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors \u0026copy; \u003ca href=\"https://carto.com/attributions\"\u003eCARTO\u003c/a\u003e",
+  "subdomains": "abcd",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_ad069e34098e89fbde84e67825de0c4d.addTo(map_2314e74502ade7e57329642e5ba6bca3);
+        
+    
+            var tile_layer_64ac2dae75157e3743b05928cdccec9c = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_64ac2dae75157e3743b05928cdccec9c.addTo(map_2314e74502ade7e57329642e5ba6bca3);
+        
+    
+            var tile_layer_1164360606d8fb0df8d92ea931e164a2 = L.tileLayer(
+                "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+                {
+  "minZoom": 0,
+  "maxZoom": 18,
+  "maxNativeZoom": 18,
+  "noWrap": false,
+  "attribution": "Esri",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_1164360606d8fb0df8d92ea931e164a2.addTo(map_2314e74502ade7e57329642e5ba6bca3);
+        
+    
+            L.control.fullscreen(
+                {
+  "position": "topleft",
+  "title": "Full Screen",
+  "titleCancel": "Exit Full Screen",
+  "forceSeparateButton": false,
+}
+            ).addTo(map_2314e74502ade7e57329642e5ba6bca3);
+        
+    
+            var tile_layer_6ec8fbd2769333b0d854b16cde702c01 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors", "detect_retina": false, "max_native_zoom": 19, "max_zoom": 19, "min_zoom": 0, "no_wrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            );
+            var mini_map_ddf1088ae835e497b928712faae7568a = new L.Control.MiniMap(
+                tile_layer_6ec8fbd2769333b0d854b16cde702c01,
+                {
+  "position": "bottomright",
+  "width": 150,
+  "height": 150,
+  "collapsedWidth": 25,
+  "collapsedHeight": 25,
+  "zoomLevelOffset": -5,
+  "centerFixed": false,
+  "zoomAnimation": false,
+  "toggleDisplay": true,
+  "autoToggleDisplay": false,
+  "minimized": false,
+}
+            );
+            map_2314e74502ade7e57329642e5ba6bca3.addControl(mini_map_ddf1088ae835e497b928712faae7568a);
+        
+    
+            var measure_control_711dce44621c95bffca89ebe47a8437c = new L.Control.Measure(
+                {
+  "position": "topright",
+  "primaryLengthUnit": "kilometers",
+  "secondaryLengthUnit": "miles",
+  "primaryAreaUnit": "sqmeters",
+  "secondaryAreaUnit": "acres",
+});
+            map_2314e74502ade7e57329642e5ba6bca3.addControl(measure_control_711dce44621c95bffca89ebe47a8437c);
+
+            // Workaround for using this plugin with Leaflet>=1.8.0
+            // https://github.com/ljagis/leaflet-measure/issues/171
+            L.Control.Measure.include({
+                _setCaptureMarkerIcon: function () {
+                    // disable autopan
+                    this._captureMarker.options.autoPanOnFocus = false;
+                    // default function
+                    this._captureMarker.setIcon(
+                        L.divIcon({
+                            iconSize: this._map.getSize().multiplyBy(2)
+                        })
+                    );
+                },
+            });
+
+        
+    
+            var locate_control_ac7a46af7f32d2416dcbef5a2aac729d = L.control.locate(
+                {}
+            ).addTo(map_2314e74502ade7e57329642e5ba6bca3);
+            
+        
+    
+            var feature_group_aa6db224c2632d21a9d2d97c68206ecb = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var poly_line_c2cef49a190dc0deebbd6fead09d6fa7 = L.polyline(
+                [[51.10286, 17.03006], [52.37403, 4.88969]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 2.5846727425}
+            ).addTo(feature_group_aa6db224c2632d21a9d2d97c68206ecb);
+        
+    
+            poly_line_c2cef49a190dc0deebbd6fead09d6fa7.bindTooltip(
+                `<div>
+                     MILP DC→Hub | Wrocław→Amsterdam | ton=23.4
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_2c2fb6ce2a702820e9a7c02ca8ffc770 = L.polyline(
+                [[51.10286, 17.03006], [40.4165, -3.70256]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 2.176401725}
+            ).addTo(feature_group_aa6db224c2632d21a9d2d97c68206ecb);
+        
+    
+            poly_line_2c2fb6ce2a702820e9a7c02ca8ffc770.bindTooltip(
+                `<div>
+                     MILP DC→Hub | Wrocław→Madrid | ton=7.1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_18d149dc43c84eb7cb7491dc91238e38 = L.polyline(
+                [[51.10286, 17.03006], [51.10286, 17.03006]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 2.721460745}
+            ).addTo(feature_group_aa6db224c2632d21a9d2d97c68206ecb);
+        
+    
+            poly_line_18d149dc43c84eb7cb7491dc91238e38.bindTooltip(
+                `<div>
+                     MILP DC→Hub | Wrocław→Wrocław | ton=28.9
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_6265d356c51efe5a7771f328a36ba881 = L.polyline(
+                [[51.10286, 17.03006], [43.84864, 18.35644]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 2.15244498}
+            ).addTo(feature_group_aa6db224c2632d21a9d2d97c68206ecb);
+        
+    
+            poly_line_6265d356c51efe5a7771f328a36ba881.bindTooltip(
+                `<div>
+                     MILP DC→Hub | Wrocław→Sarajevo | ton=6.1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_c429598fa9ee207d596969ce27257bcd = L.polyline(
+                [[51.10286, 17.03006], [45.46427, 9.18951]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 2.235194445}
+            ).addTo(feature_group_aa6db224c2632d21a9d2d97c68206ecb);
+        
+    
+            poly_line_c429598fa9ee207d596969ce27257bcd.bindTooltip(
+                `<div>
+                     MILP DC→Hub | Wrocław→Milan | ton=9.4
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_914c53de26beb7cf103e1e0ae293d14d = L.polyline(
+                [[39.77667, 30.52056], [41.01384, 28.94966]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 2.36260612}
+            ).addTo(feature_group_aa6db224c2632d21a9d2d97c68206ecb);
+        
+    
+            poly_line_914c53de26beb7cf103e1e0ae293d14d.bindTooltip(
+                `<div>
+                     MILP DC→Hub | Eskişehir→Istanbul | ton=14.5
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_c2fa5bf98127cf55c1d4e6b997bde29f = L.polyline(
+                [[39.77667, 30.52056], [38.41273, 27.13838]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 2.068797244}
+            ).addTo(feature_group_aa6db224c2632d21a9d2d97c68206ecb);
+        
+    
+            poly_line_c2fa5bf98127cf55c1d4e6b997bde29f.bindTooltip(
+                `<div>
+                     MILP DC→Hub | Eskişehir→İzmir | ton=2.8
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_f0831abe35c8490a1cf0471fecf67279 = L.polyline(
+                [[39.77667, 30.52056], [36.98615, 35.32531]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 2.110740124}
+            ).addTo(feature_group_aa6db224c2632d21a9d2d97c68206ecb);
+        
+    
+            poly_line_f0831abe35c8490a1cf0471fecf67279.bindTooltip(
+                `<div>
+                     MILP DC→Hub | Eskişehir→Adana | ton=4.4
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_1537e38ab5a836f6fa82c6f2a6c06338 = L.polyline(
+                [[39.77667, 30.52056], [38.35018, 38.31667]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 2.05219637425}
+            ).addTo(feature_group_aa6db224c2632d21a9d2d97c68206ecb);
+        
+    
+            poly_line_1537e38ab5a836f6fa82c6f2a6c06338.bindTooltip(
+                `<div>
+                     MILP DC→Hub | Eskişehir→Malatya | ton=2.1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_8758c97354252d1a265667a10b5bed34 = L.polyline(
+                [[39.77667, 30.52056], [39.90861, 41.27694]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 2.0462814925}
+            ).addTo(feature_group_aa6db224c2632d21a9d2d97c68206ecb);
+        
+    
+            poly_line_8758c97354252d1a265667a10b5bed34.bindTooltip(
+                `<div>
+                     MILP DC→Hub | Eskişehir→Erzurum | ton=1.9
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_0ab20234b1a48eb7e520bc57d756e63d = L.polyline(
+                [[39.77667, 30.52056], [39.77667, 30.52056]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 2.2064435025}
+            ).addTo(feature_group_aa6db224c2632d21a9d2d97c68206ecb);
+        
+    
+            poly_line_0ab20234b1a48eb7e520bc57d756e63d.bindTooltip(
+                `<div>
+                     MILP DC→Hub | Eskişehir→Eskişehir | ton=8.3
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_f01e69ba54668954acc2014a5f4a75b1 = L.polyline(
+                [[39.77667, 30.52056], [48.46664, 35.04066]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 2.184804275}
+            ).addTo(feature_group_aa6db224c2632d21a9d2d97c68206ecb);
+        
+    
+            poly_line_f01e69ba54668954acc2014a5f4a75b1.bindTooltip(
+                `<div>
+                     MILP DC→Hub | Eskişehir→Dnipro | ton=7.4
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            feature_group_aa6db224c2632d21a9d2d97c68206ecb.addTo(map_2314e74502ade7e57329642e5ba6bca3);
+        
+    
+            var feature_group_0c1e0726ed994ca921270d44f398620b = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var poly_line_f309516820d7f00ca42358359c31a124 = L.polyline(
+                [[41.01384, 28.94966], [41.01384, 28.94966]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_f309516820d7f00ca42358359c31a124.bindTooltip(
+                `<div>
+                     Hub→Cafe | Istanbul→Istanbul | 0.0 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_d0300eda48718a81dd4d52e17b83229a = L.polyline(
+                [[51.50853, -0.12574], [52.37403, 4.88969]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_d0300eda48718a81dd4d52e17b83229a.bindTooltip(
+                `<div>
+                     Hub→Cafe | Amsterdam→London | 356.9 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_9ba533b1f034d169b4d9389c22c54fad = L.polyline(
+                [[39.91987, 32.85427], [39.77667, 30.52056]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_9ba533b1f034d169b4d9389c22c54fad.bindTooltip(
+                `<div>
+                     Hub→Cafe | Eskişehir→Ankara | 199.9 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_b1597ff1e3fbbdd8f5dafe4f53bc09cc = L.polyline(
+                [[52.52437, 13.41053], [51.10286, 17.03006]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_b1597ff1e3fbbdd8f5dafe4f53bc09cc.bindTooltip(
+                `<div>
+                     Hub→Cafe | Wrocław→Berlin | 294.7 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_da0a02572623098a1d1db7754ca66d72 = L.polyline(
+                [[40.4165, -3.70256], [40.4165, -3.70256]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_da0a02572623098a1d1db7754ca66d72.bindTooltip(
+                `<div>
+                     Hub→Cafe | Madrid→Madrid | 0.0 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_0327cadbea01a912ac6ea1bbeb1f17fe = L.polyline(
+                [[40.19559, 29.06013], [39.77667, 30.52056]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_0327cadbea01a912ac6ea1bbeb1f17fe.bindTooltip(
+                `<div>
+                     Hub→Cafe | Eskişehir→Bursa | 132.9 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_60f71f0d05dae14c731be44cb18327ec = L.polyline(
+                [[38.41273, 27.13838], [38.41273, 27.13838]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_60f71f0d05dae14c731be44cb18327ec.bindTooltip(
+                `<div>
+                     Hub→Cafe | İzmir→İzmir | 0.0 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_241483b41cd796bd8b848ec0ca9dd215 = L.polyline(
+                [[50.45466, 30.5238], [48.46664, 35.04066]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_241483b41cd796bd8b848ec0ca9dd215.bindTooltip(
+                `<div>
+                     Hub→Cafe | Dnipro→Kyiv | 394.1 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_5b17f87f7f9def9c1373ba6e6ec3dc6d = L.polyline(
+                [[41.89193, 12.51133], [45.46427, 9.18951]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_5b17f87f7f9def9c1373ba6e6ec3dc6d.bindTooltip(
+                `<div>
+                     Hub→Cafe | Milan→Rome | 478.6 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_07450dc9fe6a3ebe16aa4b17f5e5f962 = L.polyline(
+                [[48.85341, 2.3488], [52.37403, 4.88969]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_07450dc9fe6a3ebe16aa4b17f5e5f962.bindTooltip(
+                `<div>
+                     Hub→Cafe | Amsterdam→Paris | 430.5 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_5667aaf2b3b380d5647236befb0756cc = L.polyline(
+                [[37.05944, 37.3825], [36.98615, 35.32531]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_5667aaf2b3b380d5647236befb0756cc.bindTooltip(
+                `<div>
+                     Hub→Cafe | Adana→Gaziantep | 182.8 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_d3fe63f1fdbd4d0614dc96e42ad4b404 = L.polyline(
+                [[44.43225, 26.10626], [41.01384, 28.94966]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_d3fe63f1fdbd4d0614dc96e42ad4b404.bindTooltip(
+                `<div>
+                     Hub→Cafe | Istanbul→Bucharest | 445.4 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_e108b9d77f5a0600ca883347d501fdfe = L.polyline(
+                [[53.55073, 9.99302], [51.10286, 17.03006]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_e108b9d77f5a0600ca883347d501fdfe.bindTooltip(
+                `<div>
+                     Hub→Cafe | Wrocław→Hamburg | 549.9 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_5d4170f1a58568da29a8f0e02ae522cf = L.polyline(
+                [[36.98615, 35.32531], [36.98615, 35.32531]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_5d4170f1a58568da29a8f0e02ae522cf.bindTooltip(
+                `<div>
+                     Hub→Cafe | Adana→Adana | 0.0 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_254db4e845041b897efa0f9161b87448 = L.polyline(
+                [[37.91363, 40.21721], [38.35018, 38.31667]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_254db4e845041b897efa0f9161b87448.bindTooltip(
+                `<div>
+                     Hub→Cafe | Malatya→Diyarbakır | 173.2 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_a9888c42d554461089f33965c5423d91 = L.polyline(
+                [[53.90019, 27.56653], [51.10286, 17.03006]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_a9888c42d554461089f33965c5423d91.bindTooltip(
+                `<div>
+                     Hub→Cafe | Wrocław→Minsk | 777.1 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_315eff35423a2bc575bf1dfcf7c6233a = L.polyline(
+                [[47.49835, 19.04045], [51.10286, 17.03006]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_315eff35423a2bc575bf1dfcf7c6233a.bindTooltip(
+                `<div>
+                     Hub→Cafe | Wrocław→Budapest | 426.4 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_bd7ab37b83a978897cd8dffa57159dbf = L.polyline(
+                [[52.22977, 21.01178], [51.10286, 17.03006]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_bd7ab37b83a978897cd8dffa57159dbf.bindTooltip(
+                `<div>
+                     Hub→Cafe | Wrocław→Warsaw | 301.8 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_0983d104ff50e688a8e6ec59f83221d0 = L.polyline(
+                [[48.20849, 16.37208], [51.10286, 17.03006]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_0983d104ff50e688a8e6ec59f83221d0.bindTooltip(
+                `<div>
+                     Hub→Cafe | Wrocław→Vienna | 325.3 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_71a1771b93c9ca649f6e124c1d7008db = L.polyline(
+                [[41.38879, 2.15899], [45.46427, 9.18951]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_71a1771b93c9ca649f6e124c1d7008db.bindTooltip(
+                `<div>
+                     Hub→Cafe | Milan→Barcelona | 726.0 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_d2668dfbcdb086b825a119409518a728 = L.polyline(
+                [[59.32938, 18.06871], [51.10286, 17.03006]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_d2668dfbcdb086b825a119409518a728.bindTooltip(
+                `<div>
+                     Hub→Cafe | Wrocław→Stockholm | 917.1 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_08cbcdc2e25da46870ac08cc36281b48 = L.polyline(
+                [[38.73222, 35.48528], [36.98615, 35.32531]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_08cbcdc2e25da46870ac08cc36281b48.bindTooltip(
+                `<div>
+                     Hub→Cafe | Adana→Kayseri | 194.7 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_10db62ed47b60fd7704237656abaf953 = L.polyline(
+                [[49.98177, 36.25475], [48.46664, 35.04066]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_10db62ed47b60fd7704237656abaf953.bindTooltip(
+                `<div>
+                     Hub→Cafe | Dnipro→Kharkiv | 190.1 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_481c3691bcb585193a97711ad0bfa0c2 = L.polyline(
+                [[37.87135, 32.48464], [39.77667, 30.52056]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_481c3691bcb585193a97711ad0bfa0c2.bindTooltip(
+                `<div>
+                     Hub→Cafe | Eskişehir→Konya | 271.7 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_7c3b839274b0beb09d0f5a45366789f2 = L.polyline(
+                [[45.46427, 9.18951], [45.46427, 9.18951]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_7c3b839274b0beb09d0f5a45366789f2.bindTooltip(
+                `<div>
+                     Hub→Cafe | Milan→Milan | 0.0 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_bb3a89cf9b254445d7b98e7e319e5bda = L.polyline(
+                [[36.90812, 30.69556], [39.77667, 30.52056]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_bb3a89cf9b254445d7b98e7e319e5bda.bindTooltip(
+                `<div>
+                     Hub→Cafe | Eskişehir→Antalya | 319.3 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_55ccfe89212e29a990ac5641e0090e3a = L.polyline(
+                [[44.80401, 20.46513], [43.84864, 18.35644]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_55ccfe89212e29a990ac5641e0090e3a.bindTooltip(
+                `<div>
+                     Hub→Cafe | Sarajevo→Belgrade | 198.5 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_b73a471301f2dfbc07d69f85f08e5d45 = L.polyline(
+                [[48.13743, 11.57549], [51.10286, 17.03006]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_b73a471301f2dfbc07d69f85f08e5d45.bindTooltip(
+                `<div>
+                     Hub→Cafe | Wrocław→Munich | 512.7 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_179545686e7eb90aa39149946ef599bd = L.polyline(
+                [[50.08804, 14.42076], [51.10286, 17.03006]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_179545686e7eb90aa39149946ef599bd.bindTooltip(
+                `<div>
+                     Hub→Cafe | Wrocław→Prague | 216.0 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_2f14481b2eb4ccf639913eb9bb1acbb0 = L.polyline(
+                [[52.48142, -1.89983], [52.37403, 4.88969]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_2f14481b2eb4ccf639913eb9bb1acbb0.bindTooltip(
+                `<div>
+                     Hub→Cafe | Amsterdam→Birmingham | 460.3 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_3e35577c87a3c62e65fcf7b251642ab4 = L.polyline(
+                [[55.67594, 12.56553], [51.10286, 17.03006]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_3e35577c87a3c62e65fcf7b251642ab4.bindTooltip(
+                `<div>
+                     Hub→Cafe | Wrocław→Copenhagen | 588.1 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_74e93647b7f0d25a9e860188e6655330 = L.polyline(
+                [[42.69751, 23.32415], [41.01384, 28.94966]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_74e93647b7f0d25a9e860188e6655330.bindTooltip(
+                `<div>
+                     Hub→Cafe | Istanbul→Sofia | 502.0 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_5dfe66fd9a55c9210cacbafb53175efe = L.polyline(
+                [[59.91273, 10.74609], [51.10286, 17.03006]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_5dfe66fd9a55c9210cacbafb53175efe.bindTooltip(
+                `<div>
+                     Hub→Cafe | Wrocław→Oslo | 1055.4 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_87adb4e3cfff988e9ddfaf15b9041a0b = L.polyline(
+                [[53.33306, -6.24889], [52.37403, 4.88969]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_87adb4e3cfff988e9ddfaf15b9041a0b.bindTooltip(
+                `<div>
+                     Hub→Cafe | Amsterdam→Dublin | 754.7 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_ec9e101b22e585a4fc028e377a5cc966 = L.polyline(
+                [[50.85045, 4.34878], [52.37403, 4.88969]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_ec9e101b22e585a4fc028e377a5cc966.bindTooltip(
+                `<div>
+                     Hub→Cafe | Amsterdam→Brussels | 173.5 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_26ceb9401221b099bfe188e805925344 = L.polyline(
+                [[46.48572, 30.74383], [41.01384, 28.94966]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_26ceb9401221b099bfe188e805925344.bindTooltip(
+                `<div>
+                     Hub→Cafe | Istanbul→Odesa | 625.2 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_f3fccb6a9ee616bc3b7fb3695ae04ab6 = L.polyline(
+                [[48.46664, 35.04066], [48.46664, 35.04066]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_f3fccb6a9ee616bc3b7fb3695ae04ab6.bindTooltip(
+                `<div>
+                     Hub→Cafe | Dnipro→Dnipro | 0.0 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_5ec3bd7f3d974d466713710eff21434f = L.polyline(
+                [[50.93333, 6.95], [52.37403, 4.88969]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_5ec3bd7f3d974d466713710eff21434f.bindTooltip(
+                `<div>
+                     Hub→Cafe | Amsterdam→Köln | 214.1 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_1fa75a12f924e8a2c2892211c3dafa94 = L.polyline(
+                [[40.85216, 14.26811], [43.84864, 18.35644]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_1fa75a12f924e8a2c2892211c3dafa94.bindTooltip(
+                `<div>
+                     Hub→Cafe | Sarajevo→Naples | 473.1 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_57bbf1186c6a8785318e1055b6ce8cc1 = L.polyline(
+                [[48.023, 37.80224], [48.46664, 35.04066]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_57bbf1186c6a8785318e1055b6ce8cc1.bindTooltip(
+                `<div>
+                     Hub→Cafe | Dnipro→Donetsk | 210.3 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_3c412748ff6e605f218e9a3b468b8a8d = L.polyline(
+                [[43.29695, 5.38107], [45.46427, 9.18951]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_3c412748ff6e605f218e9a3b468b8a8d.bindTooltip(
+                `<div>
+                     Hub→Cafe | Milan→Marseille | 386.8 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_b074464cfdf2e3b8f1fed074d3aebbdf = L.polyline(
+                [[51.9225, 4.47917], [52.37403, 4.88969]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_b074464cfdf2e3b8f1fed074d3aebbdf.bindTooltip(
+                `<div>
+                     Hub→Cafe | Amsterdam→Rotterdam | 57.5 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_9706da2084f3f5a47278c0a851852077 = L.polyline(
+                [[45.07049, 7.68682], [45.46427, 9.18951]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_9706da2084f3f5a47278c0a851852077.bindTooltip(
+                `<div>
+                     Hub→Cafe | Milan→Turin | 125.5 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_5b84d58d4460ddd88bef0962ad77e70f = L.polyline(
+                [[39.47391, -0.37966], [40.4165, -3.70256]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_5b84d58d4460ddd88bef0962ad77e70f.bindTooltip(
+                `<div>
+                     Hub→Cafe | Madrid→Valencia | 302.0 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_91f393b942019f27f5042f61905874ac = L.polyline(
+                [[38.35018, 38.31667], [38.35018, 38.31667]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_91f393b942019f27f5042f61905874ac.bindTooltip(
+                `<div>
+                     Hub→Cafe | Malatya→Malatya | 0.0 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_006d954a6420ea04a351711b78fcc73b = L.polyline(
+                [[39.9179, 32.86268], [39.77667, 30.52056]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_006d954a6420ea04a351711b78fcc73b.bindTooltip(
+                `<div>
+                     Hub→Cafe | Eskişehir→Çankaya | 200.6 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_3e836407079f39d6ef71c22e0450ef32 = L.polyline(
+                [[39.77667, 30.52056], [39.77667, 30.52056]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_3e836407079f39d6ef71c22e0450ef32.bindTooltip(
+                `<div>
+                     Hub→Cafe | Eskişehir→Eskişehir | 0.0 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_6a0ec1061397d8041b615a69d3c5741e = L.polyline(
+                [[51.77058, 19.47395], [51.10286, 17.03006]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_6a0ec1061397d8041b615a69d3c5741e.bindTooltip(
+                `<div>
+                     Hub→Cafe | Wrocław→Łódź | 184.9 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_2dea8379ffd0e838e8ab77f5e55c85f2 = L.polyline(
+                [[39.90861, 41.27694], [39.90861, 41.27694]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_2dea8379ffd0e838e8ab77f5e55c85f2.bindTooltip(
+                `<div>
+                     Hub→Cafe | Erzurum→Erzurum | 0.0 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_3a008b683bd064b4487d0fc1b200fe2c = L.polyline(
+                [[50.06143, 19.93658], [51.10286, 17.03006]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_3a008b683bd064b4487d0fc1b200fe2c.bindTooltip(
+                `<div>
+                     Hub→Cafe | Wrocław→Kraków | 235.6 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_8c0e19a96979917852e362987298175d = L.polyline(
+                [[41.03903, 28.85671], [41.01384, 28.94966]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_8c0e19a96979917852e362987298175d.bindTooltip(
+                `<div>
+                     Hub→Cafe | Istanbul→Bağcılar | 8.3 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_46b99a3714958e5571fbeb506e5a6747 = L.polyline(
+                [[56.946, 24.10589], [51.10286, 17.03006]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_46b99a3714958e5571fbeb506e5a6747.bindTooltip(
+                `<div>
+                     Hub→Cafe | Wrocław→Riga | 796.5 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_de6d558671f013e11e015e3ab4c210b8 = L.polyline(
+                [[52.37403, 4.88969], [52.37403, 4.88969]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_de6d558671f013e11e015e3ab4c210b8.bindTooltip(
+                `<div>
+                     Hub→Cafe | Amsterdam→Amsterdam | 0.0 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_0eb816f6fbe459785708099de4fc5a84 = L.polyline(
+                [[49.83826, 24.02324], [51.10286, 17.03006]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_0eb816f6fbe459785708099de4fc5a84.bindTooltip(
+                `<div>
+                     Hub→Cafe | Wrocław→Lviv | 514.3 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_50bd2ea66dcbb3b7a2d357824988cf3a = L.polyline(
+                [[47.85167, 35.11714], [48.46664, 35.04066]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_50bd2ea66dcbb3b7a2d357824988cf3a.bindTooltip(
+                `<div>
+                     Hub→Cafe | Dnipro→Zaporizhzhya | 68.6 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_eaac8a997932c12975ba687f9337baa5 = L.polyline(
+                [[43.84864, 18.35644], [43.84864, 18.35644]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_eaac8a997932c12975ba687f9337baa5.bindTooltip(
+                `<div>
+                     Hub→Cafe | Sarajevo→Sarajevo | 0.0 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_02587643cb948983c205c43bbafac216 = L.polyline(
+                [[41.65606, -0.87734], [40.4165, -3.70256]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_02587643cb948983c205c43bbafac216.bindTooltip(
+                `<div>
+                     Hub→Cafe | Madrid→Zaragoza | 274.1 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_a119fb94c8f6f10d4ce1a4c9525a07d0 = L.polyline(
+                [[37.38283, -5.97317], [40.4165, -3.70256]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_a119fb94c8f6f10d4ce1a4c9525a07d0.bindTooltip(
+                `<div>
+                     Hub→Cafe | Madrid→Sevilla | 390.3 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_e60baa42e6e4c9f8c044e0b32c1508e5 = L.polyline(
+                [[37.98376, 23.72784], [38.41273, 27.13838]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_e60baa42e6e4c9f8c044e0b32c1508e5.bindTooltip(
+                `<div>
+                     Hub→Cafe | İzmir→Athens | 301.8 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_3f834512535e72df40c4f457d94bb65b = L.polyline(
+                [[45.81444, 15.97798], [43.84864, 18.35644]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_3f834512535e72df40c4f457d94bb65b.bindTooltip(
+                `<div>
+                     Hub→Cafe | Sarajevo→Zagreb | 288.0 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_4921bc2ec85c5e968dcc5e20a591a26c = L.polyline(
+                [[60.16952, 24.93545], [51.10286, 17.03006]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_4921bc2ec85c5e968dcc5e20a591a26c.bindTooltip(
+                `<div>
+                     Hub→Cafe | Wrocław→Helsinki | 1121.8 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_02fdb80b54aafd19aa7d047edffbf01a = L.polyline(
+                [[50.11552, 8.68417], [51.10286, 17.03006]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_02fdb80b54aafd19aa7d047edffbf01a.bindTooltip(
+                `<div>
+                     Hub→Cafe | Wrocław→Frankfurt am Main | 598.7 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_216d105dd5f8ced3cc2e5bc8659d4504 = L.polyline(
+                [[38.1166, 13.3636], [43.84864, 18.35644]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_216d105dd5f8ced3cc2e5bc8659d4504.bindTooltip(
+                `<div>
+                     Hub→Cafe | Sarajevo→Palermo | 762.5 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_47c887441d73e24eeb42ac5e66fd250b = L.polyline(
+                [[47.00902, 28.85938], [41.01384, 28.94966]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_47c887441d73e24eeb42ac5e66fd250b.bindTooltip(
+                `<div>
+                     Hub→Cafe | Istanbul→Chisinau | 666.7 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_22d76ed30736673cd69be3f0e1b9d051 = L.polyline(
+                [[51.10286, 17.03006], [51.10286, 17.03006]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_22d76ed30736673cd69be3f0e1b9d051.bindTooltip(
+                `<div>
+                     Hub→Cafe | Wrocław→Wrocław | 0.0 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_62ee27c566a9f88a23f792f2a6e67add = L.polyline(
+                [[48.78232, 9.17702], [51.10286, 17.03006]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_62ee27c566a9f88a23f792f2a6e67add.bindTooltip(
+                `<div>
+                     Hub→Cafe | Wrocław→Stuttgart | 618.0 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_7838e91ff52a9b833d9de60c507424af = L.polyline(
+                [[55.86515, -4.25763], [52.37403, 4.88969]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_7838e91ff52a9b833d9de60c507424af.bindTooltip(
+                `<div>
+                     Hub→Cafe | Amsterdam→Glasgow | 710.5 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_3caf0df8726f32fbed38ddddba10103e = L.polyline(
+                [[51.22172, 6.77616], [52.37403, 4.88969]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_3caf0df8726f32fbed38ddddba10103e.bindTooltip(
+                `<div>
+                     Hub→Cafe | Amsterdam→Düsseldorf | 182.3 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_a5ebf1ba15762a1879afb1f2774f83ab = L.polyline(
+                [[57.70716, 11.96679], [51.10286, 17.03006]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_a5ebf1ba15762a1879afb1f2774f83ab.bindTooltip(
+                `<div>
+                     Hub→Cafe | Wrocław→Göteborg | 803.6 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_9cc7ad7153e1da31baccf42e999054db = L.polyline(
+                [[47.90572, 33.39404], [48.46664, 35.04066]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_9cc7ad7153e1da31baccf42e999054db.bindTooltip(
+                `<div>
+                     Hub→Cafe | Dnipro→Kryvyy Rih | 137.1 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_4fee2a0b17cf102a8cf0d4d68a818b41 = L.polyline(
+                [[51.45657, 7.01228], [52.37403, 4.88969]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_4fee2a0b17cf102a8cf0d4d68a818b41.bindTooltip(
+                `<div>
+                     Hub→Cafe | Amsterdam→Essen | 177.8 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_06c7b4de5aac571e4a3ab925dd7f3260 = L.polyline(
+                [[36.72016, -4.42034], [40.4165, -3.70256]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_06c7b4de5aac571e4a3ab925dd7f3260.bindTooltip(
+                `<div>
+                     Hub→Cafe | Madrid→Málaga | 415.7 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_3c1430c28c3c8a8751e0b4836dda43b0 = L.polyline(
+                [[51.51494, 7.466], [52.37403, 4.88969]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_3c1430c28c3c8a8751e0b4836dda43b0.bindTooltip(
+                `<div>
+                     Hub→Cafe | Amsterdam→Dortmund | 200.8 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_e073b57b211a92d3e0b0575b14ec3b76 = L.polyline(
+                [[44.40478, 8.94439], [45.46427, 9.18951]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_e073b57b211a92d3e0b0575b14ec3b76.bindTooltip(
+                `<div>
+                     Hub→Cafe | Milan→Genoa | 119.4 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_5f162947a4e5d9132a1a67664e030cf9 = L.polyline(
+                [[41.00231, 28.8598], [41.01384, 28.94966]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_5f162947a4e5d9132a1a67664e030cf9.bindTooltip(
+                `<div>
+                     Hub→Cafe | Istanbul→Bahçelievler | 7.6 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_c325a5bfbdd716701e05f6b391dc1a11 = L.polyline(
+                [[41.01643, 29.12476], [41.01384, 28.94966]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_c325a5bfbdd716701e05f6b391dc1a11.bindTooltip(
+                `<div>
+                     Hub→Cafe | Istanbul→Umraniye | 14.7 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_626f0425b0d25f389e401ae44cdd8c4b = L.polyline(
+                [[52.40692, 16.92993], [51.10286, 17.03006]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_626f0425b0d25f389e401ae44cdd8c4b.bindTooltip(
+                `<div>
+                     Hub→Cafe | Wrocław→Poznań | 145.2 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_9065f46c41624342487da95ec259a750 = L.polyline(
+                [[53.48095, -2.23743], [52.37403, 4.88969]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_9065f46c41624342487da95ec259a750.bindTooltip(
+                `<div>
+                     Hub→Cafe | Amsterdam→Manchester | 493.1 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_0b11a7ed30fd82af9f6542a227044663 = L.polyline(
+                [[53.38297, -1.4659], [52.37403, 4.88969]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_0b11a7ed30fd82af9f6542a227044663.bindTooltip(
+                `<div>
+                     Hub→Cafe | Amsterdam→Sheffield | 440.8 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_1442fcf17ca48328817dac749d47a215 = L.polyline(
+                [[51.05089, 13.73832], [51.10286, 17.03006]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_1442fcf17ca48328817dac749d47a215.bindTooltip(
+                `<div>
+                     Hub→Cafe | Wrocław→Dresden | 230.0 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_175a175024ba2409ab37c280ed71b125 = L.polyline(
+                [[42.67272, 21.16688], [43.84864, 18.35644]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_175a175024ba2409ab37c280ed71b125.bindTooltip(
+                `<div>
+                     Hub→Cafe | Sarajevo→Pristina | 262.4 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_3ffa35bb231b41f443a8d1cbac9adf58 = L.polyline(
+                [[44.60795, 33.52134], [39.77667, 30.52056]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_3ffa35bb231b41f443a8d1cbac9adf58.bindTooltip(
+                `<div>
+                     Hub→Cafe | Eskişehir→Sevastopol | 591.3 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_8fe3b64ca52088977ff926892ef6aeee = L.polyline(
+                [[53.07582, 8.80717], [52.37403, 4.88969]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_8fe3b64ca52088977ff926892ef6aeee.bindTooltip(
+                `<div>
+                     Hub→Cafe | Amsterdam→Bremen | 275.1 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_527351d5d42b344c897d03e9759073c8 = L.polyline(
+                [[54.68916, 25.2798], [51.10286, 17.03006]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_527351d5d42b344c897d03e9759073c8.bindTooltip(
+                `<div>
+                     Hub→Cafe | Wrocław→Vilnius | 681.4 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_ffc21975c68ca186ce74e61e4939ac33 = L.polyline(
+                [[36.81196, 34.63886], [36.98615, 35.32531]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_ffc21975c68ca186ce74e61e4939ac33.bindTooltip(
+                `<div>
+                     Hub→Cafe | Adana→Mersin | 64.0 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_ecbf9c7a37acf1cf3039762cb12ed981 = L.polyline(
+                [[53.79648, -1.54785], [52.37403, 4.88969]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_ecbf9c7a37acf1cf3039762cb12ed981.bindTooltip(
+                `<div>
+                     Hub→Cafe | Amsterdam→Leeds | 457.9 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_f6bec9e5b527af7f7255a1c3c27cc2de = L.polyline(
+                [[51.22047, 4.40026], [52.37403, 4.88969]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_f6bec9e5b527af7f7255a1c3c27cc2de.bindTooltip(
+                `<div>
+                     Hub→Cafe | Amsterdam→Antwerpen | 132.6 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_1360e0844e20f04456cce54f69aec0a9 = L.polyline(
+                [[38.49457, 43.38323], [39.90861, 41.27694]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_1360e0844e20f04456cce54f69aec0a9.bindTooltip(
+                `<div>
+                     Hub→Cafe | Erzurum→Van | 240.1 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_f221bb27e2d6b5f7e52bd35616ba124e = L.polyline(
+                [[41.02274, 29.01366], [41.01384, 28.94966]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_f221bb27e2d6b5f7e52bd35616ba124e.bindTooltip(
+                `<div>
+                     Hub→Cafe | Istanbul→Üsküdar | 5.5 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_1a9265bed17b02b4ddb6ad245633326a = L.polyline(
+                [[45.74906, 4.84789], [45.46427, 9.18951]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_1a9265bed17b02b4ddb6ad245633326a.bindTooltip(
+                `<div>
+                     Hub→Cafe | Milan→Lyon | 339.2 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_d5b10d804762994ff24d9ce9186dc28e = L.polyline(
+                [[41.0435, 28.87619], [41.01384, 28.94966]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_d5b10d804762994ff24d9ce9186dc28e.bindTooltip(
+                `<div>
+                     Hub→Cafe | Istanbul→Esenler | 7.0 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_03bf7ce48324d23b188d11551cf0f4d0 = L.polyline(
+                [[38.72509, -9.1498], [40.4165, -3.70256]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_03bf7ce48324d23b188d11551cf0f4d0.bindTooltip(
+                `<div>
+                     Hub→Cafe | Madrid→Lisbon | 503.2 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_2107044956cf1965b87afd398516eefa = L.polyline(
+                [[49.45421, 11.07752], [51.10286, 17.03006]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_2107044956cf1965b87afd398516eefa.bindTooltip(
+                `<div>
+                     Hub→Cafe | Wrocław→Nürnberg | 460.8 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_527bb651211b6337ac716a5ce07e4639 = L.polyline(
+                [[52.37052, 9.73322], [51.10286, 17.03006]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_527bb651211b6337ac716a5ce07e4639.bindTooltip(
+                `<div>
+                     Hub→Cafe | Wrocław→Hannover | 521.6 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_5cfbb66e9245c999158a28a4c25d5e1a = L.polyline(
+                [[55.95206, -3.19648], [52.37403, 4.88969]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_5cfbb66e9245c999158a28a4c25d5e1a.bindTooltip(
+                `<div>
+                     Hub→Cafe | Amsterdam→Edinburgh | 659.2 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_ce8abd78b18708006322f9aa62d812da = L.polyline(
+                [[43.60426, 1.44367], [45.46427, 9.18951]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_ce8abd78b18708006322f9aa62d812da.bindTooltip(
+                `<div>
+                     Hub→Cafe | Milan→Toulouse | 647.5 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_e4f4c4874ba73dbf3a7941ff7c2374c5 = L.polyline(
+                [[51.33962, 12.37129], [51.10286, 17.03006]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_e4f4c4874ba73dbf3a7941ff7c2374c5.bindTooltip(
+                `<div>
+                     Hub→Cafe | Wrocław→Leipzig | 325.5 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_bc5133f43bf4dea4da7f09afc2f80cc8 = L.polyline(
+                [[51.43247, 6.76516], [52.37403, 4.88969]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_bc5133f43bf4dea4da7f09afc2f80cc8.bindTooltip(
+                `<div>
+                     Hub→Cafe | Amsterdam→Duisburg | 165.9 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_61d735a8fb436533e73a558a4c3a326d = L.polyline(
+                [[52.4345, 30.9754], [48.46664, 35.04066]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_61d735a8fb436533e73a558a4c3a326d.bindTooltip(
+                `<div>
+                     Hub→Cafe | Dnipro→Homyel' | 526.6 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_5d900366dffe96c8e9e733dc7d3e2b4c = L.polyline(
+                [[53.41058, -2.97794], [52.37403, 4.88969]],
+                {"bubblingMouseEvents": true, "color": "#2c3e50", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2c3e50", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0c1e0726ed994ca921270d44f398620b);
+        
+    
+            poly_line_5d900366dffe96c8e9e733dc7d3e2b4c.bindTooltip(
+                `<div>
+                     Hub→Cafe | Amsterdam→Liverpool | 539.9 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var feature_group_11e4b0c752ae0f9325275740dc214b64 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_cluster_5838248c2bc0acdfc9de28df1d21c861 = L.markerClusterGroup(
+                {
+}
+            );
+        
+    
+            var circle_marker_c684ebf768fb12a6c974134b4607dddc = L.circleMarker(
+                [41.01384, 28.94966],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_c684ebf768fb12a6c974134b4607dddc.bindTooltip(
+                `<div>
+                     CAFE: Istanbul (TR)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_5aa6e0a4c3b8f82ee1f3867b6c0f65a9 = L.circleMarker(
+                [51.50853, -0.12574],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_5aa6e0a4c3b8f82ee1f3867b6c0f65a9.bindTooltip(
+                `<div>
+                     CAFE: London (GB)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_efc319c18563e0c61962a759375837c2 = L.circleMarker(
+                [39.91987, 32.85427],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_efc319c18563e0c61962a759375837c2.bindTooltip(
+                `<div>
+                     CAFE: Ankara (TR)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_46abb37a88895d8790a7ef9ef46ee636 = L.circleMarker(
+                [52.52437, 13.41053],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_46abb37a88895d8790a7ef9ef46ee636.bindTooltip(
+                `<div>
+                     CAFE: Berlin (DE)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_81182120226983884d2523ab94304758 = L.circleMarker(
+                [40.4165, -3.70256],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_81182120226983884d2523ab94304758.bindTooltip(
+                `<div>
+                     CAFE: Madrid (ES)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_64182d2410f47c06343bd4c479e60ecf = L.circleMarker(
+                [40.19559, 29.06013],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_64182d2410f47c06343bd4c479e60ecf.bindTooltip(
+                `<div>
+                     CAFE: Bursa (TR)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_ee062fbb13a57680d9a3d5b3b9286d07 = L.circleMarker(
+                [38.41273, 27.13838],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_ee062fbb13a57680d9a3d5b3b9286d07.bindTooltip(
+                `<div>
+                     CAFE: İzmir (TR)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_c38e910982fc8a26045b55ed77a31436 = L.circleMarker(
+                [50.45466, 30.5238],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_c38e910982fc8a26045b55ed77a31436.bindTooltip(
+                `<div>
+                     CAFE: Kyiv (UA)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_0fce676b731738962f4982a3f6fbbeaf = L.circleMarker(
+                [41.89193, 12.51133],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_0fce676b731738962f4982a3f6fbbeaf.bindTooltip(
+                `<div>
+                     CAFE: Rome (IT)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_cd7856a13a61f7b0c3dffbdbebecd0d2 = L.circleMarker(
+                [48.85341, 2.3488],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_cd7856a13a61f7b0c3dffbdbebecd0d2.bindTooltip(
+                `<div>
+                     CAFE: Paris (FR)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_699ee29b6754efab15e2295c6eca2ab1 = L.circleMarker(
+                [37.05944, 37.3825],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_699ee29b6754efab15e2295c6eca2ab1.bindTooltip(
+                `<div>
+                     CAFE: Gaziantep (TR)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_51ec527bd50c11ab7e1a29f8995591a0 = L.circleMarker(
+                [44.43225, 26.10626],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_51ec527bd50c11ab7e1a29f8995591a0.bindTooltip(
+                `<div>
+                     CAFE: Bucharest (RO)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_e5336841c7ac237f872b7cad187294d4 = L.circleMarker(
+                [53.55073, 9.99302],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_e5336841c7ac237f872b7cad187294d4.bindTooltip(
+                `<div>
+                     CAFE: Hamburg (DE)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_54153f97e28db601d3e0f38be9e3f2b1 = L.circleMarker(
+                [36.98615, 35.32531],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_54153f97e28db601d3e0f38be9e3f2b1.bindTooltip(
+                `<div>
+                     CAFE: Adana (TR)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_ef0d97bdc3625b028ea365b47326f4be = L.circleMarker(
+                [37.91363, 40.21721],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_ef0d97bdc3625b028ea365b47326f4be.bindTooltip(
+                `<div>
+                     CAFE: Diyarbakır (TR)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_400eb708582b1975afb71cd16a84ef17 = L.circleMarker(
+                [53.90019, 27.56653],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_400eb708582b1975afb71cd16a84ef17.bindTooltip(
+                `<div>
+                     CAFE: Minsk (BY)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_524ceaaf32c0af5fb2e3f7a5bcfb56e9 = L.circleMarker(
+                [47.49835, 19.04045],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_524ceaaf32c0af5fb2e3f7a5bcfb56e9.bindTooltip(
+                `<div>
+                     CAFE: Budapest (HU)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_f5f06a0317afcbedae80415a71c44657 = L.circleMarker(
+                [52.22977, 21.01178],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_f5f06a0317afcbedae80415a71c44657.bindTooltip(
+                `<div>
+                     CAFE: Warsaw (PL)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_018253477f79b1fa1d4bb68057101fba = L.circleMarker(
+                [48.20849, 16.37208],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_018253477f79b1fa1d4bb68057101fba.bindTooltip(
+                `<div>
+                     CAFE: Vienna (AT)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_bbaff36cf82e31c5ef77e678d3429a4f = L.circleMarker(
+                [41.38879, 2.15899],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_bbaff36cf82e31c5ef77e678d3429a4f.bindTooltip(
+                `<div>
+                     CAFE: Barcelona (ES)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_dfb7f82b1120408c494d8985d10e60a9 = L.circleMarker(
+                [59.32938, 18.06871],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_dfb7f82b1120408c494d8985d10e60a9.bindTooltip(
+                `<div>
+                     CAFE: Stockholm (SE)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_cacfa64210bfe7132c42e43c6a6c5c68 = L.circleMarker(
+                [38.73222, 35.48528],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_cacfa64210bfe7132c42e43c6a6c5c68.bindTooltip(
+                `<div>
+                     CAFE: Kayseri (TR)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_395a8b91f177757955e3dc5d6ef53060 = L.circleMarker(
+                [49.98177, 36.25475],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_395a8b91f177757955e3dc5d6ef53060.bindTooltip(
+                `<div>
+                     CAFE: Kharkiv (UA)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_fd0a30164071f91ae7026805ab4fd175 = L.circleMarker(
+                [37.87135, 32.48464],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_fd0a30164071f91ae7026805ab4fd175.bindTooltip(
+                `<div>
+                     CAFE: Konya (TR)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_62ef5989fcebc743196af1ebf9719bed = L.circleMarker(
+                [45.46427, 9.18951],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_62ef5989fcebc743196af1ebf9719bed.bindTooltip(
+                `<div>
+                     CAFE: Milan (IT)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_5bd3484eee5a328deca0c3ca304213c3 = L.circleMarker(
+                [36.90812, 30.69556],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_5bd3484eee5a328deca0c3ca304213c3.bindTooltip(
+                `<div>
+                     CAFE: Antalya (TR)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_63807eb146eba7daa3220f911a63fde6 = L.circleMarker(
+                [44.80401, 20.46513],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_63807eb146eba7daa3220f911a63fde6.bindTooltip(
+                `<div>
+                     CAFE: Belgrade (RS)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_0772926a62606b0d6eddab19e17e018c = L.circleMarker(
+                [48.13743, 11.57549],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_0772926a62606b0d6eddab19e17e018c.bindTooltip(
+                `<div>
+                     CAFE: Munich (DE)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_174c04309ee18e5319dd501b24b4bb02 = L.circleMarker(
+                [50.08804, 14.42076],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_174c04309ee18e5319dd501b24b4bb02.bindTooltip(
+                `<div>
+                     CAFE: Prague (CZ)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_d6e4a5a4575efa96f7d7e8b6c66ede79 = L.circleMarker(
+                [52.48142, -1.89983],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_d6e4a5a4575efa96f7d7e8b6c66ede79.bindTooltip(
+                `<div>
+                     CAFE: Birmingham (GB)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_b2d8efd1218b94ff86e12b18638c9f93 = L.circleMarker(
+                [55.67594, 12.56553],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_b2d8efd1218b94ff86e12b18638c9f93.bindTooltip(
+                `<div>
+                     CAFE: Copenhagen (DK)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_444291642fb59e3aab46f08acd17a4b8 = L.circleMarker(
+                [42.69751, 23.32415],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_444291642fb59e3aab46f08acd17a4b8.bindTooltip(
+                `<div>
+                     CAFE: Sofia (BG)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_a4964e902f39cbfb078e24ffd61ab175 = L.circleMarker(
+                [59.91273, 10.74609],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_a4964e902f39cbfb078e24ffd61ab175.bindTooltip(
+                `<div>
+                     CAFE: Oslo (NO)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_0fdb6222980a5174dfd8ebc1b7d02de2 = L.circleMarker(
+                [53.33306, -6.24889],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_0fdb6222980a5174dfd8ebc1b7d02de2.bindTooltip(
+                `<div>
+                     CAFE: Dublin (IE)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_eed6e553d421090514180697cd85233f = L.circleMarker(
+                [50.85045, 4.34878],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_eed6e553d421090514180697cd85233f.bindTooltip(
+                `<div>
+                     CAFE: Brussels (BE)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_ae23db25e453932774c40358be21cce1 = L.circleMarker(
+                [46.48572, 30.74383],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_ae23db25e453932774c40358be21cce1.bindTooltip(
+                `<div>
+                     CAFE: Odesa (UA)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_15a3374a44ec13f7421b0c234167aeaa = L.circleMarker(
+                [48.46664, 35.04066],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_15a3374a44ec13f7421b0c234167aeaa.bindTooltip(
+                `<div>
+                     CAFE: Dnipro (UA)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_df9a3ee6aae2fc8bb1a1f8ec2427dbd0 = L.circleMarker(
+                [50.93333, 6.95],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_df9a3ee6aae2fc8bb1a1f8ec2427dbd0.bindTooltip(
+                `<div>
+                     CAFE: Köln (DE)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_e9d68b9a302ebfae0be3bd139d487635 = L.circleMarker(
+                [40.85216, 14.26811],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_e9d68b9a302ebfae0be3bd139d487635.bindTooltip(
+                `<div>
+                     CAFE: Naples (IT)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_58d0d4b4a6aa0bbefcc784c084b090fa = L.circleMarker(
+                [48.023, 37.80224],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_58d0d4b4a6aa0bbefcc784c084b090fa.bindTooltip(
+                `<div>
+                     CAFE: Donetsk (UA)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_ca5e9154eaf97344cd3940bb77be2603 = L.circleMarker(
+                [43.29695, 5.38107],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_ca5e9154eaf97344cd3940bb77be2603.bindTooltip(
+                `<div>
+                     CAFE: Marseille (FR)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_b1d127c1a5ed5d3909eb91fe958edbd9 = L.circleMarker(
+                [51.9225, 4.47917],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_b1d127c1a5ed5d3909eb91fe958edbd9.bindTooltip(
+                `<div>
+                     CAFE: Rotterdam (NL)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_ab4f9cbe890d111ddb1b278c6b7dded6 = L.circleMarker(
+                [45.07049, 7.68682],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_ab4f9cbe890d111ddb1b278c6b7dded6.bindTooltip(
+                `<div>
+                     CAFE: Turin (IT)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_acbe6f63ab6a023ab82cd3daf078e836 = L.circleMarker(
+                [39.47391, -0.37966],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_acbe6f63ab6a023ab82cd3daf078e836.bindTooltip(
+                `<div>
+                     CAFE: Valencia (ES)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_d11eabbb6c7c9b514d61c7e903695486 = L.circleMarker(
+                [38.35018, 38.31667],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_d11eabbb6c7c9b514d61c7e903695486.bindTooltip(
+                `<div>
+                     CAFE: Malatya (TR)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_42a56d42e329c3d957262a5a45290459 = L.circleMarker(
+                [39.9179, 32.86268],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_42a56d42e329c3d957262a5a45290459.bindTooltip(
+                `<div>
+                     CAFE: Çankaya (TR)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_ed288a81a12f1901067d388fdb6bd651 = L.circleMarker(
+                [39.77667, 30.52056],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_ed288a81a12f1901067d388fdb6bd651.bindTooltip(
+                `<div>
+                     CAFE: Eskişehir (TR)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_805e3455edb0e258a78fd5e0e727399e = L.circleMarker(
+                [51.77058, 19.47395],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_805e3455edb0e258a78fd5e0e727399e.bindTooltip(
+                `<div>
+                     CAFE: Łódź (PL)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_331a1bf1e7838c6abe3cb36ba5a84e8b = L.circleMarker(
+                [39.90861, 41.27694],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_331a1bf1e7838c6abe3cb36ba5a84e8b.bindTooltip(
+                `<div>
+                     CAFE: Erzurum (TR)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_f72d2e72018412b9363c9a341ac3c6e1 = L.circleMarker(
+                [50.06143, 19.93658],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_f72d2e72018412b9363c9a341ac3c6e1.bindTooltip(
+                `<div>
+                     CAFE: Kraków (PL)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_bf90435c8c11aa4dbb3369542fcd4b81 = L.circleMarker(
+                [41.03903, 28.85671],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_bf90435c8c11aa4dbb3369542fcd4b81.bindTooltip(
+                `<div>
+                     CAFE: Bağcılar (TR)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_c8a08ae7674fa053b75ff74804049c46 = L.circleMarker(
+                [56.946, 24.10589],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_c8a08ae7674fa053b75ff74804049c46.bindTooltip(
+                `<div>
+                     CAFE: Riga (LV)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_c72984f78672c8afda83280f72ca2121 = L.circleMarker(
+                [52.37403, 4.88969],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_c72984f78672c8afda83280f72ca2121.bindTooltip(
+                `<div>
+                     CAFE: Amsterdam (NL)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_76b1e42e99d2caf3e21de8607a531309 = L.circleMarker(
+                [49.83826, 24.02324],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_76b1e42e99d2caf3e21de8607a531309.bindTooltip(
+                `<div>
+                     CAFE: Lviv (UA)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_97559f6656fbc074aa8bc71b08a51d89 = L.circleMarker(
+                [47.85167, 35.11714],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_97559f6656fbc074aa8bc71b08a51d89.bindTooltip(
+                `<div>
+                     CAFE: Zaporizhzhya (UA)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_2cb68aaa899cd66c07ad0ff84f038166 = L.circleMarker(
+                [43.84864, 18.35644],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_2cb68aaa899cd66c07ad0ff84f038166.bindTooltip(
+                `<div>
+                     CAFE: Sarajevo (BA)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_890623685d80f8c317827edfa783e05d = L.circleMarker(
+                [41.65606, -0.87734],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_890623685d80f8c317827edfa783e05d.bindTooltip(
+                `<div>
+                     CAFE: Zaragoza (ES)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_97efb8cb692e52487d7849a6f34efea6 = L.circleMarker(
+                [37.38283, -5.97317],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_97efb8cb692e52487d7849a6f34efea6.bindTooltip(
+                `<div>
+                     CAFE: Sevilla (ES)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_972955ca4c3347a39b43802853fd1542 = L.circleMarker(
+                [37.98376, 23.72784],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_972955ca4c3347a39b43802853fd1542.bindTooltip(
+                `<div>
+                     CAFE: Athens (GR)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_d06764caee1c34b8a99d73eade029fc2 = L.circleMarker(
+                [45.81444, 15.97798],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_d06764caee1c34b8a99d73eade029fc2.bindTooltip(
+                `<div>
+                     CAFE: Zagreb (HR)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_f2f260b20afb4fd19577356d1321ce1b = L.circleMarker(
+                [60.16952, 24.93545],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_f2f260b20afb4fd19577356d1321ce1b.bindTooltip(
+                `<div>
+                     CAFE: Helsinki (FI)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_af99c4dbe623e7a36027a2a8a219b61c = L.circleMarker(
+                [50.11552, 8.68417],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_af99c4dbe623e7a36027a2a8a219b61c.bindTooltip(
+                `<div>
+                     CAFE: Frankfurt am Main (DE)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_159c5d2b8061f65ab9980c98f8cc87b2 = L.circleMarker(
+                [38.1166, 13.3636],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_159c5d2b8061f65ab9980c98f8cc87b2.bindTooltip(
+                `<div>
+                     CAFE: Palermo (IT)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_4a9213e892c96217f31c732997fbc911 = L.circleMarker(
+                [47.00902, 28.85938],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_4a9213e892c96217f31c732997fbc911.bindTooltip(
+                `<div>
+                     CAFE: Chisinau (MD)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_60ee928ea114906f9dd56a676501ccb5 = L.circleMarker(
+                [51.10286, 17.03006],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_60ee928ea114906f9dd56a676501ccb5.bindTooltip(
+                `<div>
+                     CAFE: Wrocław (PL)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_e558401696f10380ccdb7bc1a0b4b449 = L.circleMarker(
+                [48.78232, 9.17702],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_e558401696f10380ccdb7bc1a0b4b449.bindTooltip(
+                `<div>
+                     CAFE: Stuttgart (DE)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_d73a7719832433117402089c85fd3a0b = L.circleMarker(
+                [55.86515, -4.25763],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_d73a7719832433117402089c85fd3a0b.bindTooltip(
+                `<div>
+                     CAFE: Glasgow (GB)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_e17a0018728544ca2dcf4ec2771a5a48 = L.circleMarker(
+                [51.22172, 6.77616],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_e17a0018728544ca2dcf4ec2771a5a48.bindTooltip(
+                `<div>
+                     CAFE: Düsseldorf (DE)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_5e5d57f09e0af462440cea637ed6c355 = L.circleMarker(
+                [57.70716, 11.96679],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_5e5d57f09e0af462440cea637ed6c355.bindTooltip(
+                `<div>
+                     CAFE: Göteborg (SE)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_ac2e5e05193792db5805a7d51bc9de44 = L.circleMarker(
+                [47.90572, 33.39404],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_ac2e5e05193792db5805a7d51bc9de44.bindTooltip(
+                `<div>
+                     CAFE: Kryvyy Rih (UA)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_9b299890f1afe5c1b45ea9122a24b690 = L.circleMarker(
+                [51.45657, 7.01228],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_9b299890f1afe5c1b45ea9122a24b690.bindTooltip(
+                `<div>
+                     CAFE: Essen (DE)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_4eb98476dd143fe6e5fde9d2d3e87f3e = L.circleMarker(
+                [36.72016, -4.42034],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_4eb98476dd143fe6e5fde9d2d3e87f3e.bindTooltip(
+                `<div>
+                     CAFE: Málaga (ES)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_6b96ee2cc3dec63d1b4ed8679de83678 = L.circleMarker(
+                [51.51494, 7.466],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_6b96ee2cc3dec63d1b4ed8679de83678.bindTooltip(
+                `<div>
+                     CAFE: Dortmund (DE)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_07c3ea3c52da71ef8ebfb03a4fcc9062 = L.circleMarker(
+                [44.40478, 8.94439],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_07c3ea3c52da71ef8ebfb03a4fcc9062.bindTooltip(
+                `<div>
+                     CAFE: Genoa (IT)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_1b2a03c0f6b0810edb6d38931dc52d9c = L.circleMarker(
+                [41.00231, 28.8598],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_1b2a03c0f6b0810edb6d38931dc52d9c.bindTooltip(
+                `<div>
+                     CAFE: Bahçelievler (TR)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_61d2cfa45bcb8e42f6ff7c74150c57f1 = L.circleMarker(
+                [41.01643, 29.12476],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_61d2cfa45bcb8e42f6ff7c74150c57f1.bindTooltip(
+                `<div>
+                     CAFE: Umraniye (TR)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_a6ba48f1b6920df342a16cc99378d29c = L.circleMarker(
+                [52.40692, 16.92993],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_a6ba48f1b6920df342a16cc99378d29c.bindTooltip(
+                `<div>
+                     CAFE: Poznań (PL)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_fd2ca7b6f862674db842ca042aa2626b = L.circleMarker(
+                [53.48095, -2.23743],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_fd2ca7b6f862674db842ca042aa2626b.bindTooltip(
+                `<div>
+                     CAFE: Manchester (GB)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_464f712e28801be866ae6d444386333a = L.circleMarker(
+                [53.38297, -1.4659],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_464f712e28801be866ae6d444386333a.bindTooltip(
+                `<div>
+                     CAFE: Sheffield (GB)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_dbccbed368547bf919d8ab6086ebbca3 = L.circleMarker(
+                [51.05089, 13.73832],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_dbccbed368547bf919d8ab6086ebbca3.bindTooltip(
+                `<div>
+                     CAFE: Dresden (DE)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_241a8df1d0a8b648511d28b922e5e661 = L.circleMarker(
+                [42.67272, 21.16688],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_241a8df1d0a8b648511d28b922e5e661.bindTooltip(
+                `<div>
+                     CAFE: Pristina (XK)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_9ed97353860377b3cf044f7dfbc48a05 = L.circleMarker(
+                [44.60795, 33.52134],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_9ed97353860377b3cf044f7dfbc48a05.bindTooltip(
+                `<div>
+                     CAFE: Sevastopol (UA)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_d06df581f286cec046bcb871dbbbaab2 = L.circleMarker(
+                [53.07582, 8.80717],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_d06df581f286cec046bcb871dbbbaab2.bindTooltip(
+                `<div>
+                     CAFE: Bremen (DE)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_8a5d3bba29d9c6b227574cff253bc98e = L.circleMarker(
+                [54.68916, 25.2798],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_8a5d3bba29d9c6b227574cff253bc98e.bindTooltip(
+                `<div>
+                     CAFE: Vilnius (LT)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_4a7aa83d40b532e1fc5fd010a7bb5b05 = L.circleMarker(
+                [36.81196, 34.63886],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_4a7aa83d40b532e1fc5fd010a7bb5b05.bindTooltip(
+                `<div>
+                     CAFE: Mersin (TR)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_1ecdb7f353058d0c413c13fcf1130546 = L.circleMarker(
+                [53.79648, -1.54785],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_1ecdb7f353058d0c413c13fcf1130546.bindTooltip(
+                `<div>
+                     CAFE: Leeds (GB)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_2f8b3a8bd1dc99f8728e23faf139baa3 = L.circleMarker(
+                [51.22047, 4.40026],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_2f8b3a8bd1dc99f8728e23faf139baa3.bindTooltip(
+                `<div>
+                     CAFE: Antwerpen (BE)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_bd26891d2651772f258807a6b4652231 = L.circleMarker(
+                [38.49457, 43.38323],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_bd26891d2651772f258807a6b4652231.bindTooltip(
+                `<div>
+                     CAFE: Van (TR)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_e5f3c75fd8c338b0392044548a85b034 = L.circleMarker(
+                [41.02274, 29.01366],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_e5f3c75fd8c338b0392044548a85b034.bindTooltip(
+                `<div>
+                     CAFE: Üsküdar (TR)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_a432ea04da875ea9fe16e056387ba533 = L.circleMarker(
+                [45.74906, 4.84789],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_a432ea04da875ea9fe16e056387ba533.bindTooltip(
+                `<div>
+                     CAFE: Lyon (FR)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_3f67e90f8e121cda6b5cd319685047d0 = L.circleMarker(
+                [41.0435, 28.87619],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_3f67e90f8e121cda6b5cd319685047d0.bindTooltip(
+                `<div>
+                     CAFE: Esenler (TR)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_5d0fcfc764fd7e63cb46f46de3cb3cb9 = L.circleMarker(
+                [38.72509, -9.1498],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_5d0fcfc764fd7e63cb46f46de3cb3cb9.bindTooltip(
+                `<div>
+                     CAFE: Lisbon (PT)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_ae5d2577d6849a0923eef1e0d6685b6c = L.circleMarker(
+                [49.45421, 11.07752],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_ae5d2577d6849a0923eef1e0d6685b6c.bindTooltip(
+                `<div>
+                     CAFE: Nürnberg (DE)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_2c27bfbb27c89f38b495d4d7b9c5f89f = L.circleMarker(
+                [52.37052, 9.73322],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_2c27bfbb27c89f38b495d4d7b9c5f89f.bindTooltip(
+                `<div>
+                     CAFE: Hannover (DE)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_4c85b3e8ad4a8bc7bbc998c0bb8afd23 = L.circleMarker(
+                [55.95206, -3.19648],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_4c85b3e8ad4a8bc7bbc998c0bb8afd23.bindTooltip(
+                `<div>
+                     CAFE: Edinburgh (GB)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_fd682a6318e5e836c71f7f311dcd95de = L.circleMarker(
+                [43.60426, 1.44367],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_fd682a6318e5e836c71f7f311dcd95de.bindTooltip(
+                `<div>
+                     CAFE: Toulouse (FR)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_35ddab1b3264cddd7c2c5ae434c4c976 = L.circleMarker(
+                [51.33962, 12.37129],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_35ddab1b3264cddd7c2c5ae434c4c976.bindTooltip(
+                `<div>
+                     CAFE: Leipzig (DE)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_5ed04941078a7305b0e9baabe1a05a01 = L.circleMarker(
+                [51.43247, 6.76516],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_5ed04941078a7305b0e9baabe1a05a01.bindTooltip(
+                `<div>
+                     CAFE: Duisburg (DE)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_f6daaf374eca3c5f6d77c6570bf7ea69 = L.circleMarker(
+                [52.4345, 30.9754],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_f6daaf374eca3c5f6d77c6570bf7ea69.bindTooltip(
+                `<div>
+                     CAFE: Homyel' (BY)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_5671c91ae47a166b9d83786d3fa40ba4 = L.circleMarker(
+                [53.41058, -2.97794],
+                {"bubblingMouseEvents": true, "color": "#666666", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#aaaaaa", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 1}
+            ).addTo(marker_cluster_5838248c2bc0acdfc9de28df1d21c861);
+        
+    
+            circle_marker_5671c91ae47a166b9d83786d3fa40ba4.bindTooltip(
+                `<div>
+                     CAFE: Liverpool (GB)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            marker_cluster_5838248c2bc0acdfc9de28df1d21c861.addTo(feature_group_11e4b0c752ae0f9325275740dc214b64);
+        
+    
+            var circle_marker_b3909309e973df4158a351488a8d3688 = L.circleMarker(
+                [41.01384, 28.94966],
+                {"bubblingMouseEvents": true, "color": "#ff7a00", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff7a00", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8.666666666666666, "stroke": true, "weight": 2}
+            ).addTo(feature_group_11e4b0c752ae0f9325275740dc214b64);
+        
+    
+            circle_marker_b3909309e973df4158a351488a8d3688.bindTooltip(
+                `<div>
+                     HUB: Istanbul (TR) | cafes=10 | avg=228.2 km | max=666.7 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_052c42110e72989aff99225ad2e3ca85 = L.circleMarker(
+                [52.37403, 4.88969],
+                {"bubblingMouseEvents": true, "color": "#1f77ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77ff", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10.333333333333334, "stroke": true, "weight": 2}
+            ).addTo(feature_group_11e4b0c752ae0f9325275740dc214b64);
+        
+    
+            circle_marker_052c42110e72989aff99225ad2e3ca85.bindTooltip(
+                `<div>
+                     HUB: Amsterdam (NL) | cafes=20 | avg=344.2 km | max=754.7 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_4c3498865bbe32454e7fa5dd1c6ec9fb = L.circleMarker(
+                [40.4165, -3.70256],
+                {"bubblingMouseEvents": true, "color": "#1f77ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77ff", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8.0, "stroke": true, "weight": 2}
+            ).addTo(feature_group_11e4b0c752ae0f9325275740dc214b64);
+        
+    
+            circle_marker_4c3498865bbe32454e7fa5dd1c6ec9fb.bindTooltip(
+                `<div>
+                     HUB: Madrid (ES) | cafes=6 | avg=314.2 km | max=503.2 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_da746a6bbbc0c12c7ede93f3aafef854 = L.circleMarker(
+                [38.41273, 27.13838],
+                {"bubblingMouseEvents": true, "color": "#ff7a00", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff7a00", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7.333333333333333, "stroke": true, "weight": 2}
+            ).addTo(feature_group_11e4b0c752ae0f9325275740dc214b64);
+        
+    
+            circle_marker_da746a6bbbc0c12c7ede93f3aafef854.bindTooltip(
+                `<div>
+                     HUB: İzmir (TR) | cafes=2 | avg=150.9 km | max=301.8 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_a5da7f0e6c9ebff8b9bb23ca16325a2b = L.circleMarker(
+                [51.10286, 17.03006],
+                {"bubblingMouseEvents": true, "color": "#1f77ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77ff", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 11.333333333333332, "stroke": true, "weight": 2}
+            ).addTo(feature_group_11e4b0c752ae0f9325275740dc214b64);
+        
+    
+            circle_marker_a5da7f0e6c9ebff8b9bb23ca16325a2b.bindTooltip(
+                `<div>
+                     HUB: Wrocław (PL) | cafes=26 | avg=507.8 km | max=1121.8 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_fa8346fde572e215bb902f3e57aa8b6c = L.circleMarker(
+                [36.98615, 35.32531],
+                {"bubblingMouseEvents": true, "color": "#ff7a00", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff7a00", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7.666666666666667, "stroke": true, "weight": 2}
+            ).addTo(feature_group_11e4b0c752ae0f9325275740dc214b64);
+        
+    
+            circle_marker_fa8346fde572e215bb902f3e57aa8b6c.bindTooltip(
+                `<div>
+                     HUB: Adana (TR) | cafes=4 | avg=110.4 km | max=194.7 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_7d1486b5a2b6a83beea31642adb192f1 = L.circleMarker(
+                [38.35018, 38.31667],
+                {"bubblingMouseEvents": true, "color": "#ff7a00", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff7a00", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7.333333333333333, "stroke": true, "weight": 2}
+            ).addTo(feature_group_11e4b0c752ae0f9325275740dc214b64);
+        
+    
+            circle_marker_7d1486b5a2b6a83beea31642adb192f1.bindTooltip(
+                `<div>
+                     HUB: Malatya (TR) | cafes=2 | avg=86.6 km | max=173.2 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_048bf2da5536f99741b1f161b7b96d61 = L.circleMarker(
+                [39.90861, 41.27694],
+                {"bubblingMouseEvents": true, "color": "#ff7a00", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff7a00", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7.333333333333333, "stroke": true, "weight": 2}
+            ).addTo(feature_group_11e4b0c752ae0f9325275740dc214b64);
+        
+    
+            circle_marker_048bf2da5536f99741b1f161b7b96d61.bindTooltip(
+                `<div>
+                     HUB: Erzurum (TR) | cafes=2 | avg=120.1 km | max=240.1 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_f0505b4fd632c4ac6b201618698275b8 = L.circleMarker(
+                [43.84864, 18.35644],
+                {"bubblingMouseEvents": true, "color": "#1f77ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77ff", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8.0, "stroke": true, "weight": 2}
+            ).addTo(feature_group_11e4b0c752ae0f9325275740dc214b64);
+        
+    
+            circle_marker_f0505b4fd632c4ac6b201618698275b8.bindTooltip(
+                `<div>
+                     HUB: Sarajevo (BA) | cafes=6 | avg=330.8 km | max=762.5 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_f36dfd11736032fb5368c196015fef93 = L.circleMarker(
+                [39.77667, 30.52056],
+                {"bubblingMouseEvents": true, "color": "#ff7a00", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff7a00", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8.166666666666666, "stroke": true, "weight": 2}
+            ).addTo(feature_group_11e4b0c752ae0f9325275740dc214b64);
+        
+    
+            circle_marker_f36dfd11736032fb5368c196015fef93.bindTooltip(
+                `<div>
+                     HUB: Eskişehir (TR) | cafes=7 | avg=245.1 km | max=591.3 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_042b95d73f2dfc2184a0d96cc9ce5b46 = L.circleMarker(
+                [48.46664, 35.04066],
+                {"bubblingMouseEvents": true, "color": "#1f77ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77ff", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8.166666666666666, "stroke": true, "weight": 2}
+            ).addTo(feature_group_11e4b0c752ae0f9325275740dc214b64);
+        
+    
+            circle_marker_042b95d73f2dfc2184a0d96cc9ce5b46.bindTooltip(
+                `<div>
+                     HUB: Dnipro (UA) | cafes=7 | avg=218.1 km | max=526.6 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_2455e58e791501f559c32700a6de763d = L.circleMarker(
+                [45.46427, 9.18951],
+                {"bubblingMouseEvents": true, "color": "#1f77ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77ff", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8.333333333333334, "stroke": true, "weight": 2}
+            ).addTo(feature_group_11e4b0c752ae0f9325275740dc214b64);
+        
+    
+            circle_marker_2455e58e791501f559c32700a6de763d.bindTooltip(
+                `<div>
+                     HUB: Milan (IT) | cafes=8 | avg=352.9 km | max=726.0 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_9d63d82b35c3e0a2d0e2544e0fb7588e = L.circleMarker(
+                [51.10286, 17.03006],
+                {"bubblingMouseEvents": true, "color": "#cc0000", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff0000", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12, "stroke": true, "weight": 3}
+            ).addTo(feature_group_11e4b0c752ae0f9325275740dc214b64);
+        
+    
+            circle_marker_9d63d82b35c3e0a2d0e2544e0fb7588e.bindTooltip(
+                `<div>
+                     DC: Wrocław (PL)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_fe1465f6f154aab4febd0a04290035bc = L.circleMarker(
+                [39.77667, 30.52056],
+                {"bubblingMouseEvents": true, "color": "#cc0000", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff0000", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12, "stroke": true, "weight": 3}
+            ).addTo(feature_group_11e4b0c752ae0f9325275740dc214b64);
+        
+    
+            circle_marker_fe1465f6f154aab4febd0a04290035bc.bindTooltip(
+                `<div>
+                     DC: Eskişehir (TR)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            feature_group_11e4b0c752ae0f9325275740dc214b64.addTo(map_2314e74502ade7e57329642e5ba6bca3);
+        
+    
+            var layer_control_443007c57be4c7e1d1b079259ff00b8e_layers = {
+                base_layers : {
+                    "Carto (clean)" : tile_layer_ad069e34098e89fbde84e67825de0c4d,
+                    "OSM" : tile_layer_64ac2dae75157e3743b05928cdccec9c,
+                    "Esri Satellite" : tile_layer_1164360606d8fb0df8d92ea931e164a2,
+                },
+                overlays :  {
+                    "Primary Supply (DC \u2192 Hub)" : feature_group_aa6db224c2632d21a9d2d97c68206ecb,
+                    "Secondary Delivery (Hub \u2192 Cafe)" : feature_group_0c1e0726ed994ca921270d44f398620b,
+                    "Nodes (DC, Hub, Cafe)" : feature_group_11e4b0c752ae0f9325275740dc214b64,
+                },
+            };
+            let layer_control_443007c57be4c7e1d1b079259ff00b8e = L.control.layers(
+                layer_control_443007c57be4c7e1d1b079259ff00b8e_layers.base_layers,
+                layer_control_443007c57be4c7e1d1b079259ff00b8e_layers.overlays,
+                {
+  "position": "topright",
+  "collapsed": false,
+  "autoZIndex": true,
+}
+            ).addTo(map_2314e74502ade7e57329642e5ba6bca3);
+
+        
+</script>
+</html>

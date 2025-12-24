@@ -1,0 +1,2 @@
+status,objective,obj_fixed_hub,obj_fixed_dc,obj_inbound,obj_outbound,obj_co2,hubs_opened,dcs_opened,avg_cafe_to_hub_km,max_cafe_to_hub_km,max_service_km,fixed_cost_scale,min_hubs,max_hubs,min_dcs,max_dcs,base_hub_cost,base_dc_cost,one_dc_per_product,enable_co2,rent_src_city,rent_src_country,rent_src_global,candidate_n
+Optimal,38954.76454878945,14654.744112288237,14061.603586035268,3496.2654279354106,6742.151422530505,0.0,12,2,334.6033280319441,1121.8305417016854,1400.0,1000.0,12,50,2,10,1000.0,6000.0,False,False,43,4,3,50

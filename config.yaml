@@ -1,0 +1,50 @@
+max_service_km: 1400
+min_hubs: 12
+max_hubs: 50
+candidate_hubs_n: 50
+fixed_cost_scale: 1000
+fixed_cost_weights:
+  rent: 0.45
+  labour: 0.45
+  tax: 0.1
+demand_multiplier: 2.5
+poi_radius_m: 10000
+dc:
+  min_dcs: 2
+  max_dcs: 10
+  dc_cost_multiplier: 6.0
+  enforce_region: true
+  min_dcs_tr: 1
+  min_dcs_eu: 1
+  base_dc_cost: 6000
+products:
+  beans:
+    out_cost_per_ton_km: 0.18
+    in_cost_per_ton_km: 0.055
+    base_ton_per_city: 0.6
+  syrup:
+    out_cost_per_ton_km: 0.18
+    in_cost_per_ton_km: 0.055
+    base_ton_per_city: 0.35
+  cons:
+    out_cost_per_ton_km: 0.18
+    in_cost_per_ton_km: 0.055
+    base_ton_per_city: 0.25
+candidate_selection:
+  score_weights:
+    infra: 0.55
+    demand: 0.15
+    cost: 0.3
+  region_min:
+    TR: 1
+    EU: 1
+  max_per_country: 20
+  spatial_thin_km: 30
+infra_discount:
+  hub: 0.1
+  dc: 0.05
+capacity:
+  hub_max_total_ton: 120
+  dc_max_total_ton: 400
+  hub_max_cafes: 60
+one_dc_per_product: false
